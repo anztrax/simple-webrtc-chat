@@ -1,6 +1,10 @@
 # Simple WebRTC chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b66413f8-e4bf-4436-9175-42a4744be768/deploy-status)](https://app.netlify.com/sites/focused-roentgen-f975cf/deploys)
+
+Demo project [link](https://focused-roentgen-f975cf.netlify.app/)
+
+
 
 ## Available Scripts
 
