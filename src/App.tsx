@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Suspense, lazy, ExoticComponent} from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+const SimpleChatCreateSignalPage = lazy(() => import("./screens/SimpleChat/SimpleChatCreateSignalPage"));
+const SimpleChatReceiveSignalPage = lazy(() => import('./screens/SimpleChat/SimpleChatReceiveSignalPage'));
+
+type RouteItemModel = {
+  exact?: boolean,
+  component: ExoticComponent | (() => JSX.Element)
+}
+
+const routes :Record<string, RouteItemModel> = {
+  '/learn-webrtc/create-signal' : {
+    component: SimpleChatCreateSignalPage,
+    exact: true
+  },
+  '/learn-webrtc/receive-signal' : {
+    component: SimpleChatReceiveSignalPage,
+    exact: true
+  }
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<div>Page is loading...</div>}>
+        <Switch>
+          {Object.keys(routes).map(routeKey => {
+            const routeItem = routes[routeKey];
+
+            return (
+              <Route
+                path={routeKey}
+                component={routeItem.component}
+                exact={routeItem.exact ?? false}
+              />
+            );
+          })}
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
