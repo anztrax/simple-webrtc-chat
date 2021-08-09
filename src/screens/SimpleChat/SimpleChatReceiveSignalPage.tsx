@@ -15,15 +15,10 @@ let SimpleChatReceiveSignalPage = () => {
 		if(channel != null) {
 			channel.onmessage = (e) => {
 				console.log(`new message from client : ${e.data}`);
-				handleOnAddMessage(e.data);
+				setMessages([...messages, e.data]);
 			}
 		}
 	}, [channel, messages]);
-
-	// handlers
-	const handleOnAddMessage = (message: string) => {
-		setMessages([...messages, message]);
-	}
 
 	const onConnect = (sdpValue: string) => {
 		rc.onicecandidate = e => {
