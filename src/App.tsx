@@ -1,6 +1,7 @@
 import React, {Suspense, lazy, ExoticComponent} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+const HomePage = lazy(() => import('./screens/HomePage'));
 const SimpleChatCreateSignalPage = lazy(() => import("./screens/SimpleChat/SimpleChatCreateSignalPage"));
 const SimpleChatReceiveSignalPage = lazy(() => import('./screens/SimpleChat/SimpleChatReceiveSignalPage'));
 
@@ -10,6 +11,10 @@ type RouteItemModel = {
 }
 
 const routes :Record<string, RouteItemModel> = {
+  '/': {
+    component: HomePage,
+    exact: true,
+  },
   '/learn-webrtc/create-signal' : {
     component: SimpleChatCreateSignalPage,
     exact: true
