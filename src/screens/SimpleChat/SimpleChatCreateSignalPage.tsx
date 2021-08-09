@@ -3,7 +3,14 @@ import SDPValue from "../../components/SimpleChat/SDPValue";
 import SDPValueSetterTextArea from "../../components/SimpleChat/SDPValueSetterTextArea";
 import MessageSender from "../../components/SimpleChat/MessageSender";
 
-const lc = new RTCPeerConnection();
+const config = {
+	iceServers: [
+		{
+			"urls" : 'stun:stun.l.google.com:19302'
+		}
+	]
+};
+const lc = new RTCPeerConnection(config);
 let SimpleChatCreateSignalPage = () => {
 	const [ sdp, setSdp ] = useState<string | null>(null);
 	const [ isConnectionOpen, setIsConnectionOpen ] = useState<boolean>(false);
