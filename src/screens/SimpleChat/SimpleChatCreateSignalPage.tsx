@@ -36,7 +36,7 @@ let SimpleChatCreateSignalPage = () => {
 				console.log('set successfully!');
 			});
 		setDc(dc);
-	}, [ messages ]);
+	}, [ messages, isConnectionOpen ]);
 
 	const handleOnSetAnswer = (value: string) => {
 		lc.setRemoteDescription(JSON.parse(value)).then(() => {

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SDPValue from "../../components/SimpleChat/SDPValue";
 import SDPValueSetterTextArea from "../../components/SimpleChat/SDPValueSetterTextArea";
 import MessageSender from "../../components/SimpleChat/MessageSender";
@@ -16,9 +16,7 @@ let SimpleChatReceiveSignalPage = () => {
 			channel.onmessage = (e) => {
 				console.log(`new message from client : ${e.data}`);
 				handleOnAddMessage(e.data);
-				// setMessages([...messages, e.data]);
 			}
-
 		}
 	}, [channel, messages]);
 
